@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
     public GameObject PlayerBullet;
     public GameObject BulletPos1;
     public GameObject BulletPos2;
+    public GameObject Explosion;
     // Start is called before the first frame update
     public float speed;
     void Start()
@@ -43,5 +44,18 @@ public class PlayerController : MonoBehaviour
         position.x = Mathf.Clamp(position.x, bot.x, top.x);
         position.y = Mathf.Clamp(position.y, bot.y, top.y);
         transform.position = position;
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if ((col.tag=="EnemyTag") || (col.tag=="EnemyBulletTag") || (col.tag == "Asteroid"))
+        {
+            ExplosionEvent();
+            Destroy(gameObject);
+        }
+    }
+    void ExplosionEvent()
+    {
+        GameObject explosion = (GameObject)Instantiate(Explosion);
+        explosion.transform.position = transform.position;
     }
 }

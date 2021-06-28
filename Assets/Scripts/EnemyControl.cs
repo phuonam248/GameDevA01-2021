@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour
 {
     public float speed;
+    public GameObject Explosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,5 +23,19 @@ public class EnemyControl : MonoBehaviour
         if (min.y > transform.position.y) {
             Destroy(gameObject);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if ((col.tag == "PlayerTag") || (col.tag == "PlayerBulletTag"))
+        {
+            ExplosionEvent();
+            Destroy(gameObject);
+        }
+    }
+    void ExplosionEvent()
+    {
+        GameObject explosion = (GameObject)Instantiate(Explosion);
+        explosion.transform.position = transform.position;
     }
 }

@@ -23,6 +23,12 @@ public class PlayerBulletController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+    }
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if ((col.tag == "EnemyTag") || (col.tag=="EnemyBulletTag") || (col.tag == "Asteroid"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
