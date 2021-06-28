@@ -12,9 +12,7 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("spawnEnemy", maxEnemySpawnRate);
-        Invoke("spawnAsteroid", maxAsteroidSpawnRate);
-        InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
+        
     }
 
     // Update is called once per frame
@@ -81,5 +79,19 @@ public class EnemySpawner : MonoBehaviour
         else {
             CancelInvoke("IncreaseSpawnRate");
         }
+    }
+
+    // Function to start Enemy spawner
+    public void ScheduleEnemySpawner() {
+        Invoke("spawnEnemy", maxEnemySpawnRate);
+        Invoke("spawnAsteroid", maxAsteroidSpawnRate);
+        InvokeRepeating("IncreaseSpawnRate", 0f, 30f);
+    }
+
+    // Function to stop enemy spawner
+    public void UnscheduleEnemySpawner() {
+        CancelInvoke("spawnEnemy");
+        CancelInvoke("spawnAsteroid");
+        CancelInvoke("IncreaseSpawnRate");
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AsteroidControl : MonoBehaviour
 {
+    public GameObject explosion;
     float speed;
     // Start is called before the first frame update
     void Start()
@@ -22,5 +23,16 @@ public class AsteroidControl : MonoBehaviour
         if (min.y > transform.position.y) {
             Destroy(gameObject);
         }
+    }
+    void OnTriggerEnter2D(Collider2D col) {
+        if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag")) {
+            PlayExplosion();
+            Destroy(gameObject);
+        }
+    }
+
+    void PlayExplosion() {
+        GameObject anExplosion = (GameObject)Instantiate(explosion);
+        anExplosion.transform.position = transform.position;
     }
 }
