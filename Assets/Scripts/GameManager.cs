@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
 
                 break;
             case GameManagerState.Gameover:
+                //play game over sound
+                gameObject.GetComponent<AudioSource>().Play();
+
                 // Stop spawner
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 // Display Game Over UI
