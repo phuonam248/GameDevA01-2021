@@ -35,7 +35,7 @@ public class PlayerControl : MonoBehaviour
         LivesUIText.text = "Lives: " + lives.ToString();
 
         // set player ship to the center of the screen
-        transform.position = new Vector2(0,0);
+        //transform.position = new Vector2(0,-3);
 
         // set player game object to active
         gameObject.SetActive(true);

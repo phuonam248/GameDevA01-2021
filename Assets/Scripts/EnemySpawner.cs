@@ -65,10 +65,7 @@ public class EnemySpawner : MonoBehaviour
                 spawnInSenconds = 1f;
             }
             Invoke("spawnAsteroid", spawnInSenconds);
-        }
-        
-
-        
+        }    
     }
 
     //Function to increase difficulty
@@ -83,6 +80,9 @@ public class EnemySpawner : MonoBehaviour
 
     // Function to start Enemy spawner
     public void ScheduleEnemySpawner() {
+        float maxEnemySpawnRate = 5f; //seconds
+        float maxAsteroidSpawnRate = 8f; //seconds
+        
         Invoke("spawnEnemy", maxEnemySpawnRate);
         Invoke("spawnAsteroid", maxAsteroidSpawnRate);
         InvokeRepeating("IncreaseSpawnRate", 0f, 30f);

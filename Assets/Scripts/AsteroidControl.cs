@@ -5,11 +5,11 @@ using UnityEngine;
 public class AsteroidControl : MonoBehaviour
 {
     public GameObject explosion;
-    float speed;
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
-        speed = 2f;
+        
     }
 
     // Update is called once per frame

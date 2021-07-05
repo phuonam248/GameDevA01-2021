@@ -6,10 +6,10 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public GameObject playerShip;
-    public GameObject playButton;
     public GameObject enemySpawner;
     public GameObject gameOver;
     public Text LivesText;
+    public Text InstructionText;
 
     public enum GameManagerState {
         Opening,
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GMState = GameManagerState.Opening;
+        Invoke("ChangeToGameplay", 6f);
     }
 
     // Update is called once per frame
@@ -35,22 +36,23 @@ public class GameManager : MonoBehaviour
         switch(GMState) 
         {
             case GameManagerState.Opening:
-                // hide game over UI
-                gameOver.SetActive(false);
-                // hide score UI
 
-                // hide Lives UI
+                InstructionText.gameObject.SetActive(true);
+
+                gameOver.SetActive(false);
+              
                 LivesText.gameObject.SetActive(false);
-                // set play button to active
-                playButton.SetActive(true);
+
+                Invoke("ChangeToGameplay", 6f);
+
+                playerShip.SetActive(true);
+                playerShip.GetComponent<Transform>().position = new Vector2(0,-3);
 
                 break;
             case GameManagerState.Gameplay:
-                // hide play button
-                playButton.SetActive(false);
-                // display score UI
-
-                // display Lives UI
+                
+                InstructionText.gameObject.SetActive(false);
+                
                 LivesText.gameObject.SetActive(true);
 
                 // set player ship active and init player lives
@@ -81,16 +83,14 @@ public class GameManager : MonoBehaviour
         UpdateGameManagerState();
     } 
 
-    // when play button is clicked, call this function
-    public void StartGamePlay()
-    {
-        GMState = GameManagerState.Gameplay;
-        UpdateGameManagerState();
-    }
-
     // Function to change Game manager state to opening
     void ChangeToOpening() 
     {
         SetGameManagerState(GameManagerState.Opening);
+    }
+
+    void ChangeToGameplay() 
+    {
+        SetGameManagerState(GameManagerState.Gameplay);
     }
 }
