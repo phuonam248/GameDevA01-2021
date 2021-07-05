@@ -357,10 +357,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerShip: {fileID: 0}
-  playButton: {fileID: 0}
   enemySpawner: {fileID: 0}
   gameOver: {fileID: 0}
+  tryAgainButton: {fileID: 0}
+  exitToMenuButton: {fileID: 0}
   LivesText: {fileID: 0}
+  InstructionText: {fileID: 0}
 --- !u!4 &303106253
 Transform:
   m_ObjectHideFlags: 0
@@ -1203,7 +1205,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9245283, g: 0.53197366, b: 0, a: 1}
+  m_Color: {r: 0.9254902, g: 0.53333336, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

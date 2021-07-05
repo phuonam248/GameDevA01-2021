@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public GameObject playerShip;
     public GameObject enemySpawner;
     public GameObject gameOver;
+    public GameObject tryAgainButton;
+    public GameObject exitToMenuButton;
     public Text LivesText;
     public Text InstructionText;
+
+    bool GameIsPaused;
 
     public enum GameManagerState {
         Opening,
@@ -28,7 +33,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            GameIsPaused = !GameIsPaused;
+            PauseGame();
+            // if (Input.GetKeyDown(KeyCode.Space)) {
+            //     ResumeGame();
+            // }
+        }
     }
 
     void UpdateGameManagerState()
@@ -40,6 +51,8 @@ public class GameManager : MonoBehaviour
                 InstructionText.gameObject.SetActive(true);
 
                 gameOver.SetActive(false);
+                tryAgainButton.SetActive(false);
+                exitToMenuButton.SetActive(false);
               
                 LivesText.gameObject.SetActive(false);
 
@@ -71,8 +84,10 @@ public class GameManager : MonoBehaviour
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 // Display Game Over UI
                 gameOver.SetActive(true);
+                tryAgainButton.SetActive(true);
+                exitToMenuButton.SetActive(true);
                 // Set game manager state to Opening after 8 seconds
-                Invoke("ChangeToOpening", 8f);
+                //Invoke("ChangeToOpening", 8f);
                 break;
         }
     }
@@ -93,4 +108,27 @@ public class GameManager : MonoBehaviour
     {
         SetGameManagerState(GameManagerState.Gameplay);
     }
+
+    void PauseGame() {
+        if (GMState == GameManagerState.Gameover) 
+            return;
+        if (GameIsPaused) {
+            Time.timeScale = 0;
+            playerShip.GetComponent<PlayerShooting>().isPause = false;
+        }
+        else {
+            Time.timeScale = 1;
+            playerShip.GetComponent<PlayerShooting>().isPause = true;
+        }
+    }
+
+    public void ClickTryAgainButton() {
+        ChangeToOpening();
+    }
+
+    public void ClickExitToMenuButton() {
+        SceneManager.LoadScene("Menu");
+    }
+
+
 }
