@@ -6,9 +6,8 @@ public class PlayerBullet : MonoBehaviour
 {
     public float speed;
     Vector2 _direction;
-
-
-    // Start is called before the first frame update
+    
+    
     void Start()
     {
         
@@ -17,7 +16,7 @@ public class PlayerBullet : MonoBehaviour
     //     _direction = direction.normalized;
     // }
 
-    // Update is called once per frame
+    
     void Update()
     {
         // get bullet's current position
@@ -39,7 +38,8 @@ public class PlayerBullet : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if ((col.tag == "EnemyShipTag") || (col.tag == "AsteroidTag")) {
+        if ((col.tag == "EnemyShipTag") || (col.tag == "AsteroidTag")) { 
+            
             Destroy(gameObject);
         }
     }

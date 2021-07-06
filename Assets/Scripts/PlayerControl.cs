@@ -9,13 +9,18 @@ public class PlayerControl : MonoBehaviour
     public GameObject playerBullet;
     public GameObject bulletPosition;
     public GameObject explosion;
+    public Transform canvas;
+    public Image heart;
+    
+
+    List<Image> heartList = new List<Image>();
+
     public float speed;
 
-    // Reference to Lives UI text
-    public Text LivesUIText;
-
-    const int maxLives = 3;
+    const int maxLives = 5;
+    int startLives = 3;
     int lives;
+    
 
     // Rotation
     public Vector2 mousePosition;
@@ -29,16 +34,10 @@ public class PlayerControl : MonoBehaviour
 
     public void Init() 
     {
-        lives = maxLives;
+        lives = startLives;
+        // update player's ship's health (heart)
+        RenderHeart();
 
-        // update lives UI text
-        LivesUIText.text = "Lives: " + lives.ToString();
-
-        // set player ship to the center of the screen
-        //transform.position = new Vector2(0,-3);
-
-        // set player game object to active
-        gameObject.SetActive(true);
     }
 
     
@@ -50,6 +49,7 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         SetRotation();
@@ -89,26 +89,42 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
+    IEnumerator OnTriggerEnter2D(Collider2D col) {
         if ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag") || (col.tag == "AsteroidTag")) {
-            PlayExplosion();
-
+            
             lives--; 
-            LivesUIText.text = "Lives: " + lives.ToString();
+            Destroy(heartList[lives].gameObject);
 
             if (lives == 0) {
+                PlayExplosion();
                 // update game manager state to game over
                 gameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.Gameover);
                 // hide player's ship when dead
                 gameObject.SetActive(false);
             }
-            //Destroy(gameObject);
+
+            gameObject.GetComponent<Renderer>().material.color = Color.red;
+            yield return new WaitForSeconds(.2f);
+            gameObject.GetComponent<Renderer>().material.color = Color.white;
+            
         }
     }
 
     void PlayExplosion() {
         GameObject anExplosion = (GameObject)Instantiate(explosion);
         anExplosion.transform.position = transform.position;
+    }
+
+    void RenderHeart() {
+        heartList = new List<Image>();
+        for (int i = 0; i < lives; i++) {
+            Image newHeart = (Image)Instantiate(heart);
+            newHeart.transform.SetParent(canvas, false);
+            Vector2 postion = newHeart.transform.position;
+            postion.x += (80*i); // 3 hearts cannot be displayed in the same position, right?
+            newHeart.transform.position = postion; // update heart's position
+            heartList.Add(newHeart);
+        }
     }
 
   

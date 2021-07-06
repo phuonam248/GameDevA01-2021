@@ -11,8 +11,9 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject tryAgainButton;
     public GameObject exitToMenuButton;
-    public Text LivesText;
     public Text InstructionText;
+    public Text ScoreText;
+    
 
     bool GameIsPaused;
 
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         GMState = GameManagerState.Opening;
-        Invoke("ChangeToGameplay", 6f);
+        Invoke("ChangeToGameplay", 4f);
     }
 
     // Update is called once per frame
@@ -53,20 +54,22 @@ public class GameManager : MonoBehaviour
                 gameOver.SetActive(false);
                 tryAgainButton.SetActive(false);
                 exitToMenuButton.SetActive(false);
-              
-                LivesText.gameObject.SetActive(false);
+                ScoreText.gameObject.SetActive(false);
 
-                Invoke("ChangeToGameplay", 6f);
+                Invoke("ChangeToGameplay", 4f);
 
                 playerShip.SetActive(true);
                 playerShip.GetComponent<Transform>().position = new Vector2(0,-3);
+                playerShip.GetComponent<Renderer>().material.color = Color.white;
 
                 break;
             case GameManagerState.Gameplay:
                 
+                ScoreText.GetComponent<GameScore>().Score = 0;
+
                 InstructionText.gameObject.SetActive(false);
-                
-                LivesText.gameObject.SetActive(true);
+
+                ScoreText.gameObject.SetActive(true);
 
                 // set player ship active and init player lives
                 playerShip.GetComponent<PlayerControl>().Init();

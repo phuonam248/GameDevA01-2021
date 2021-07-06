@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4301484766060052796}
   - component: {fileID: 4301484766060052797}
-  - component: {fileID: 4301484766060052798}
   - component: {fileID: 4301484766060052799}
   - component: {fileID: 4379745615827615132}
   m_Layer: 0
@@ -86,25 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &4301484766060052798
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4301484766060052792}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d0428c62035971e40a6a1a1fcdb02109, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4301484766060052799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 3468571393487934613, guid: 6a081579661c42549811ac1bf3f4cc50, type: 3}
+  scoreText: {fileID: 0}
   speed: 3
 --- !u!61 &4379745615827615132
 BoxCollider2D:

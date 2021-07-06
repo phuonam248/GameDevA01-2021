@@ -220,6 +220,7 @@ RectTransform:
   - {fileID: 1241621879}
   - {fileID: 2071540678}
   - {fileID: 2088820311}
+  - {fileID: 856385406}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -794,6 +795,98 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6360139284141870866, guid: a0af66b8fcee9814fbbce65dfe7c9ce1, type: 3}
   m_PrefabInstance: {fileID: 6360139283322330077}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &856385405
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 856385406}
+  - component: {fileID: 856385408}
+  - component: {fileID: 856385407}
+  - component: {fileID: 856385409}
+  m_Layer: 5
+  m_Name: ScoreText
+  m_TagString: ScoreTag
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &856385406
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856385405}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 179756273}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -170, y: -30}
+  m_SizeDelta: {x: 311.5153, y: 76.1425}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &856385407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856385405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.9858491, b: 0.9858491, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 30
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 47
+    m_Alignment: 5
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0000000
+--- !u!222 &856385408
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856385405}
+  m_CullTransparentMesh: 1
+--- !u!114 &856385409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856385405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a39fe679a41a2438061460128e6d5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1007791134
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,8 +936,8 @@ MonoBehaviour:
   gameOver: {fileID: 295294063}
   tryAgainButton: {fileID: 2071540677}
   exitToMenuButton: {fileID: 2088820310}
-  LivesText: {fileID: 383490187}
   InstructionText: {fileID: 1241621880}
+  ScoreText: {fileID: 856385407}
 --- !u!82 &1007791137
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1694,6 +1787,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1788113225, guid: 862dbf136d156164bab14fa6b2fb6af5, type: 3}
+      propertyPath: m_Size.x
+      value: 1.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5368006084068540180, guid: 862dbf136d156164bab14fa6b2fb6af5, type: 3}
+      propertyPath: heart
+      value: 
+      objectReference: {fileID: 7235687596509272930, guid: f24471ec19a879346a57e3c9300b6af9, type: 3}
+    - target: {fileID: 5368006084068540180, guid: 862dbf136d156164bab14fa6b2fb6af5, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 179756273}
+    - target: {fileID: 5368006084068540180, guid: 862dbf136d156164bab14fa6b2fb6af5, type: 3}
+      propertyPath: ScoreText
+      value: 
+      objectReference: {fileID: 856385407}
     - target: {fileID: 5368006084068540180, guid: 862dbf136d156164bab14fa6b2fb6af5, type: 3}
       propertyPath: LivesUIText
       value: 
