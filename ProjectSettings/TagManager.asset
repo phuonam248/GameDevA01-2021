@@ -11,6 +11,10 @@ TagManager:
   - PlayerBulletTag
   - PlayerShipTag
   - ScoreTag
+  - BgMusicTag
+  - SoundEffectTag
+  - BossTag
+  - YellowBulletTag
   layers:
   - Default
   - TransparentFX

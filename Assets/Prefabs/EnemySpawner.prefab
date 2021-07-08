@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 4301484766060052792, guid: 3b1356778a27e3d4987a024cff45ba68, type: 3}
+  asteroid: {fileID: 4752555288002638437, guid: d3f94df2fcabab14d9949bc7103042fc, type: 3}

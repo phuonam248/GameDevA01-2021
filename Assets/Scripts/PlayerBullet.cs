@@ -38,7 +38,7 @@ public class PlayerBullet : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D col) {
-        if ((col.tag == "EnemyShipTag") || (col.tag == "AsteroidTag")) { 
+        if ((col.tag == "EnemyShipTag") || (col.tag == "AsteroidTag") || (col.tag == "BossTag")) { 
             
             Destroy(gameObject);
         }

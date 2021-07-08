@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class GameManager : MonoBehaviour
     public GameObject gameOver;
     public GameObject tryAgainButton;
     public GameObject exitToMenuButton;
+    public GameObject BgMusicToggle;
+    public GameObject SoundEffectToggle;
+    public GameObject BackgroundMusic;
+    public GameObject explosion;
     public Text InstructionText;
     public Text ScoreText;
     
@@ -27,6 +32,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BgMusicToggle.GetComponent<Toggle>().isOn = InGameSetting.BackgroundMusic;
+        SoundEffectToggle.GetComponent<Toggle>().isOn = InGameSetting.SoundEffect;
         GMState = GameManagerState.Opening;
         Invoke("ChangeToGameplay", 4f);
     }
@@ -34,12 +41,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) && GMState == GameManagerState.Gameplay) {
             GameIsPaused = !GameIsPaused;
             PauseGame();
-            // if (Input.GetKeyDown(KeyCode.Space)) {
-            //     ResumeGame();
-            // }
+
         }
     }
 
@@ -80,8 +85,7 @@ public class GameManager : MonoBehaviour
 
                 break;
             case GameManagerState.Gameover:
-                //play game over sound
-                gameObject.GetComponent<AudioSource>().Play();
+                
 
                 // Stop spawner
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
@@ -113,15 +117,22 @@ public class GameManager : MonoBehaviour
     }
 
     void PauseGame() {
-        if (GMState == GameManagerState.Gameover) 
-            return;
+        
         if (GameIsPaused) {
             Time.timeScale = 0;
             playerShip.GetComponent<PlayerShooting>().isPause = false;
+            
+            BgMusicToggle.gameObject.SetActive(GameIsPaused);
+            SoundEffectToggle.gameObject.SetActive(GameIsPaused);
+            exitToMenuButton.gameObject.SetActive(GameIsPaused);
         }
         else {
             Time.timeScale = 1;
             playerShip.GetComponent<PlayerShooting>().isPause = true;
+            
+            BgMusicToggle.gameObject.SetActive(GameIsPaused);
+            SoundEffectToggle.gameObject.SetActive(GameIsPaused);
+            exitToMenuButton.gameObject.SetActive(GameIsPaused);
         }
     }
 
@@ -131,7 +142,43 @@ public class GameManager : MonoBehaviour
 
     public void ClickExitToMenuButton() {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
+
+    public void BgMusicToggleOn() 
+    {
+        InGameSetting.BackgroundMusic = BgMusicToggle.GetComponent<Toggle>().isOn;
+        if (BgMusicToggle.GetComponent<Toggle>().isOn) 
+        {
+            BackgroundMusic.GetComponent<AudioSource>().UnPause();
+        }
+            
+        else 
+        {
+            BackgroundMusic.GetComponent<AudioSource>().Pause();
+        }
+            
+    }
+
+    public void SoundEffectToggleOn() 
+    {
+        InGameSetting.SoundEffect = SoundEffectToggle.GetComponent<Toggle>().isOn;
+        if (BgMusicToggle.GetComponent<Toggle>().isOn) 
+        {
+            playerShip.GetComponent<AudioSource>().mute = false;
+            explosion.GetComponent<AudioSource>().mute = false;
+            gameOver.GetComponent<AudioSource>().mute = false;
+        }
+        else 
+        {
+            playerShip.GetComponent<AudioSource>().mute = true;
+            explosion.GetComponent<AudioSource>().mute = true;
+            gameOver.GetComponent<AudioSource>().mute = true;
+        }
+            
+    }
+    
+    
 
 
 }

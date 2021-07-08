@@ -21,6 +21,7 @@ public class PlayerControl : MonoBehaviour
     int startLives = 3;
     int lives;
     
+    int gameMode;
 
     // Rotation
     public Vector2 mousePosition;
@@ -43,7 +44,8 @@ public class PlayerControl : MonoBehaviour
     
     void Start()
     {
-        
+        gameMode = InGameSetting.GameMode;
+       
     }
 
     // Update is called once per frame
@@ -90,17 +92,29 @@ public class PlayerControl : MonoBehaviour
     }
 
     IEnumerator OnTriggerEnter2D(Collider2D col) {
-        if ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag") || (col.tag == "AsteroidTag")) {
-            
-            lives--; 
-            Destroy(heartList[lives].gameObject);
+        if ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag") || 
+            (col.tag == "AsteroidTag")  || (col.tag == "BossTag")        ||
+            (col.tag == "YellowBulletTag")) 
+        {
+            if (lives > 0)
+            {
+                lives--; 
+                Destroy(heartList[lives].gameObject);
 
-            if (lives == 0) {
-                PlayExplosion();
-                // update game manager state to game over
-                gameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.Gameover);
-                // hide player's ship when dead
-                gameObject.SetActive(false);
+                if (lives == 0) {
+                    PlayExplosion();
+                    // update game manager state to game over
+                    if (gameMode == 0) {
+                        gameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.Gameover);
+                    }
+                    else if (gameMode == 2) {
+                        gameManager.GetComponent<BossFight>().ChangeToGameover();
+                    }
+                    
+                    
+                    // hide player's ship when dead
+                    gameObject.SetActive(false);
+                }
             }
 
             gameObject.GetComponent<Renderer>().material.color = Color.red;
