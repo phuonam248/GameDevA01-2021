@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5368006084068540180}
   - component: {fileID: 5368006084068540182}
   - component: {fileID: 1788113225}
+  - component: {fileID: 607049245}
+  - component: {fileID: 607049244}
   m_Layer: 0
   m_Name: Player
   m_TagString: PlayerShipTag
@@ -72,10 +74,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1935453945
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4853055123583119345, guid: eb6a14086718b4c48b4cb4c44754a856, type: 3}
+  m_Sprite: {fileID: -8761483511772326392, guid: eb6a14086718b4c48b4cb4c44754a856, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,8 +104,9 @@ MonoBehaviour:
   playerBullet: {fileID: 8623541950361429857, guid: 4459fde8d69fc864697f17296ac40559, type: 3}
   bulletPosition: {fileID: 5368006084947317714}
   explosion: {fileID: 3468571393487934613, guid: 6a081579661c42549811ac1bf3f4cc50, type: 3}
+  canvas: {fileID: 0}
+  heart: {fileID: 7235687596509272930, guid: f24471ec19a879346a57e3c9300b6af9, type: 3}
   speed: 5
-  LivesUIText: {fileID: 0}
   mousePosition: {x: 0, y: 0}
   rb: {fileID: 5368006084068540182}
 --- !u!50 &5368006084068540182
@@ -141,8 +144,121 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.11, y: 0.0001}
+  m_Size: {x: 1.43, y: 0.0001}
   m_Direction: 0
+--- !u!82 &607049245
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368006084068540184}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 0be78573b0136c245ac7917f3ff9ed10, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &607049244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368006084068540184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3316b0843f336ad469c1bb055ee5af05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 8623541950361429857, guid: 4459fde8d69fc864697f17296ac40559, type: 3}
+  firePoint: {fileID: 5368006084947317715}
+  bulletForce: 20
+  fireTimer: 0
+  isPause: 0
 --- !u!1 &5368006084947317714
 GameObject:
   m_ObjectHideFlags: 0

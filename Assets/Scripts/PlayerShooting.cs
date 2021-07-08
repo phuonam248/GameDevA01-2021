@@ -14,14 +14,17 @@ public class PlayerShooting : MonoBehaviour {
     private bool canFire;
     private float delayFireTimer = 0.35f;
     public float fireTimer;
+    public bool isPause;
     // Start is called before the first frame update
     void Start() {
         fireTimer = delayFireTimer;
+        isPause = true;
     }
 
     // Update is called once per frame
     void Update() {
-        Fire();
+        if (isPause)
+            Fire();
     }
 
     private void Fire() {
