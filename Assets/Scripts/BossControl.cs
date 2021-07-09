@@ -8,13 +8,14 @@ public class BossControl : MonoBehaviour
     public GameObject Explosion;
     public GameObject HealthBar;
     public SpriteRenderer spriteRenderer;
+    public Sprite NormalFace;
     public Sprite LaughFace;
-    public Sprite AngryFace;
     public Sprite CryFace;
 
     int health;
     float speed;
-    string direction = "l";
+    string x_direction = "l";
+    
     Vector2 startingPosition = new Vector2(0f, 2.1f);
 
 
@@ -22,7 +23,7 @@ public class BossControl : MonoBehaviour
     int phase3Health = 30;
 
     public void Init() {
-        
+        speed = 2f;
         health = 100;
         HealthBar.GetComponent<Transform>().localScale = new Vector2(1f,1f);
     }
@@ -40,7 +41,9 @@ public class BossControl : MonoBehaviour
         switch(BossFight.GetComponent<BossFight>().Phase)
         {
             case global::BossFight.BossFightPhase.WaitingToStart:
+                speed = 2f;
                 MoveToStartingPosition();
+                health = 0;
                 if (transform.position.y <= startingPosition.y){
                     BossFight.GetComponent<BossFight>().ChangeToPhaseOne();
                 }
@@ -55,7 +58,8 @@ public class BossControl : MonoBehaviour
                 break;
 
             case global::BossFight.BossFightPhase.Phase_3:
-                MoveHorizontal();
+                speed = 1.5f;
+                ChasePlayerShip();
                 break;
         }
        
@@ -81,18 +85,35 @@ public class BossControl : MonoBehaviour
 
         Vector2 pos = transform.position;
         
-        if (direction == "l") {
+        if (x_direction == "l") {
             pos.x -= speed*Time.deltaTime;
             if (pos.x <= min.x)
-                direction = "r";
+                x_direction = "r";
         }
-        else if (direction == "r") {
+        else if (x_direction == "r") {
             pos.x += speed*Time.deltaTime;
             if (pos.x >= max.x)
-                direction = "l";
+                x_direction = "l";
         }
 
         transform.position = pos;
+    }
+
+    void ChasePlayerShip() {
+
+        GameObject playerShip = GameObject.Find("Player");
+
+        if (playerShip != null) {
+            
+            Vector2 direction = playerShip.transform.position - gameObject.transform.position;
+            direction = direction.normalized;
+             
+            Vector2 position = transform.position;
+
+            position += direction * speed * Time.deltaTime;
+
+            transform.position = position;
+        }
     }
 
 
@@ -105,7 +126,7 @@ public class BossControl : MonoBehaviour
                 health--; 
                 HealthBarDecrease();
                 if (health == phase2Health) {
-                    spriteRenderer.sprite = AngryFace;
+                    spriteRenderer.sprite = LaughFace;
                     BossFight.GetComponent<BossFight>().ChangeToPhaseTwo();
                 }
                 else if (health == phase3Health) {
@@ -118,6 +139,7 @@ public class BossControl : MonoBehaviour
                 }
 
                 if (health == 0) {
+                   
                    PlayExplosion();
                    Destroy(gameObject);
                    BossFight.GetComponent<BossFight>().ChangeToVictory();

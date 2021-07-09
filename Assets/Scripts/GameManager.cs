@@ -137,6 +137,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void ClickTryAgainButton() {
+        destroyAllEnemies();
         ChangeToOpening();
     }
 
@@ -178,7 +179,26 @@ public class GameManager : MonoBehaviour
             
     }
     
-    
+    // Destroy green virus, red virus and enemy bullets on the scene
+    void destroyAllEnemies() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("EnemyShipTag");
+        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("AsteroidTag");
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBulletTag");
+        GameObject[] yelloBullets = GameObject.FindGameObjectsWithTag("EnemyBulletTag");
+        for (int i = 0; i < enemies.Length;i++) {
+            Destroy(enemies[i]);
+        }
+        for (int i = 0; i < asteroids.Length;i++) {
+            Destroy(asteroids[i]);
+        }
+
+        for (int i = 0; i < bullets.Length;i++) {
+            Destroy(bullets[i]);
+        }
+        for (int i = 0; i < yelloBullets.Length;i++) {
+            Destroy(yelloBullets[i]);
+        }
+    }
 
 
 }

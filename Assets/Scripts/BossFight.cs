@@ -99,7 +99,7 @@ public class BossFight : MonoBehaviour
                 break;
 
             case BossFightPhase.Phase_3:
-                //enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
+                enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 break;
 
             case BossFightPhase.Gameover:
@@ -115,6 +115,7 @@ public class BossFight : MonoBehaviour
                 break;
 
             case BossFightPhase.Victory:
+                ScoreText.GetComponent<GameScore>().Score += 10000;
                 enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
                 Victory.SetActive(true);
                 exitToMenuButton.gameObject.SetActive(true);
@@ -182,8 +183,29 @@ public class BossFight : MonoBehaviour
     public void ClickTryAgainButton() {
         Time.timeScale = 1;
         BigVirus.GetComponent<Transform>().position = new Vector2(0f, 18.1f);
-        
+        BigVirus.GetComponent<BossControl>().spriteRenderer.sprite = BigVirus.GetComponent<BossControl>().NormalFace;
+        destroyAllEnemies();
         ChangeToWaitingToStart();
+    }
+
+    void destroyAllEnemies() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("EnemyShipTag");
+        GameObject[] asteroids = GameObject.FindGameObjectsWithTag("AsteroidTag");
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("EnemyBulletTag");
+        GameObject[] yelloBullets = GameObject.FindGameObjectsWithTag("YellowBulletTag");
+        for (int i = 0; i < enemies.Length;i++) {
+            Destroy(enemies[i]);
+        }
+        for (int i = 0; i < asteroids.Length;i++) {
+            Destroy(asteroids[i]);
+        }
+
+        for (int i = 0; i < bullets.Length;i++) {
+            Destroy(bullets[i]);
+        }
+        for (int i = 0; i < yelloBullets.Length;i++) {
+            Destroy(yelloBullets[i]);
+        }
     }
 
     public void ClickExitToMenuButton() {

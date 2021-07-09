@@ -3302,8 +3302,8 @@ MonoBehaviour:
   Explosion: {fileID: 3468571393487934613, guid: 6a081579661c42549811ac1bf3f4cc50, type: 3}
   HealthBar: {fileID: 98167798}
   spriteRenderer: {fileID: 1626336217}
+  NormalFace: {fileID: -5888845342232556802, guid: fee073fd17b81d24491a9f779fb3d73f, type: 3}
   LaughFace: {fileID: -6963195877183015321, guid: fee073fd17b81d24491a9f779fb3d73f, type: 3}
-  AngryFace: {fileID: -6963195877183015321, guid: fee073fd17b81d24491a9f779fb3d73f, type: 3}
   CryFace: {fileID: -7366506907712603825, guid: fee073fd17b81d24491a9f779fb3d73f, type: 3}
 --- !u!58 &1626336220
 CircleCollider2D:
