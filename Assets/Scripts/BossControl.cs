@@ -21,14 +21,16 @@ public class BossControl : MonoBehaviour
     int phase2Health = 75;
     int phase3Health = 30;
 
-    void Init() {
-
+    public void Init() {
+        
+        health = 100;
+        HealthBar.GetComponent<Transform>().localScale = new Vector2(1f,1f);
     }
 
     void Start()
     {
-        health = 100;
         speed = 2f;
+        //HealthBar.SetActive(false);
         
     }
 

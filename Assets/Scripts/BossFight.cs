@@ -42,6 +42,7 @@ public class BossFight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        BigVirus.GetComponent<Transform>().position = new Vector2(0f, 18.1f);
         Phase = BossFightPhase.WaitingToStart;
         
         
@@ -63,12 +64,15 @@ public class BossFight : MonoBehaviour
         {
             case BossFightPhase.WaitingToStart:
 
+                // UI 
                 gameOver.SetActive(false);
                 tryAgainButton.SetActive(false);
                 exitToMenuButton.SetActive(false);
                 InstructionText.gameObject.SetActive(true);
                 ScoreText.gameObject.SetActive(false);
 
+                
+                // Game object
                 playerShip.SetActive(true);
                 playerShip.GetComponent<Transform>().position = new Vector2(0,-3);
                 playerShip.GetComponent<Renderer>().material.color = Color.white;
@@ -82,6 +86,9 @@ public class BossFight : MonoBehaviour
 
                 ScoreText.gameObject.SetActive(true);
 
+                // set the boss active and init its hp
+                BigVirus.GetComponent<BossControl>().Init();
+                HealthBar.SetActive(true);
                 // set player ship active and init player lives
                 playerShip.GetComponent<PlayerControl>().Init();
                 
@@ -174,6 +181,8 @@ public class BossFight : MonoBehaviour
 
     public void ClickTryAgainButton() {
         Time.timeScale = 1;
+        BigVirus.GetComponent<Transform>().position = new Vector2(0f, 18.1f);
+        
         ChangeToWaitingToStart();
     }
 
