@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 
@@ -15,12 +16,21 @@ public class PlayerShooting : MonoBehaviour {
     private float delayFireTimer = 0.35f;
     public float fireTimer;
     public bool isPause;
+    [SerializeField] GameObject[] skins;
     // Start is called before the first frame update
     void Start() {
         fireTimer = delayFireTimer;
         isPause = true;
+        ChangePlayerSkin();
     }
-
+    void ChangePlayerSkin() {
+        int index = GameStateManager.Instance.GetSelectedSkinIndex();
+        Debug.Log(index);
+        skins[index].SetActive(true);
+        for (int i =0; i<skins.Length; i++)
+            if (i!= index)
+                skins[i].SetActive(false);
+    }
     // Update is called once per frame
     void Update() {
         if (isPause)

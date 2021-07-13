@@ -17,13 +17,14 @@ public class MenuManager : MonoBehaviour
     public GameObject backButton;
     public GameObject BgMusicToggle;
     public GameObject SoundEffectToggle;
-
+    public Text CoinText;
 
     // Start is called before the first frame update
     void Start()
     {
         BgMusicToggle.GetComponent<Toggle>().isOn = InGameSetting.BackgroundMusic;
         SoundEffectToggle.GetComponent<Toggle>().isOn = InGameSetting.SoundEffect;
+        CoinText.text = GameStateManager.Instance.Coins.ToString();
     }
 
     // Update is called once per frame
@@ -76,7 +77,7 @@ public class MenuManager : MonoBehaviour
 
     public void ClickStoreButton()
     {
-        return;
+        SceneManager.LoadScene("Store");
     }
 
     public void ClickSettingButton()

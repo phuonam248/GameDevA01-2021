@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CampaignTwo.unity
     guid: 2f2c37e669a9de04b853780b3d8ff430
+  - enabled: 1
+    path: Assets/Scenes/Store.unity
+    guid: 11ea3b23f15080749b613f99c235d632
   m_configObjects: {}
