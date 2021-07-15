@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     public GameObject BgMusicToggle;
     public GameObject SoundEffectToggle;
     public Text CoinText;
+    public AudioSource backgroundMusic;
+    public AudioSource MenuSoundEffect;
 
     // Start is called before the first frame update
     void Start()
@@ -99,16 +101,17 @@ public class MenuManager : MonoBehaviour
 
     public void BgMusicToggleOn() 
     {
-        InGameSetting.BackgroundMusic = BgMusicToggle.GetComponent<Toggle>().isOn;
+        //InGameSetting.BackgroundMusic = BgMusicToggle.GetComponent<Toggle>().isOn;
         if (BgMusicToggle.GetComponent<Toggle>().isOn) 
         {
-            
-            GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().UnPause();
+            InGameSetting.BackgroundMusic = true;
+            backgroundMusic.UnPause();
         }
             
         else 
         {
-            GameObject.Find("BackgroundMusic").GetComponent<AudioSource>().Pause();
+            InGameSetting.BackgroundMusic = false;
+            backgroundMusic.Pause();
             
         }
             
@@ -116,7 +119,22 @@ public class MenuManager : MonoBehaviour
 
     public void SoundEffectToggleOn() 
     {
-        InGameSetting.SoundEffect = SoundEffectToggle.GetComponent<Toggle>().isOn;
+        //InGameSetting.SoundEffect = SoundEffectToggle.GetComponent<Toggle>().isOn;
+        
+        
+        if (SoundEffectToggle.GetComponent<Toggle>().isOn) 
+        {
+            InGameSetting.SoundEffect = true;
+            MenuSoundEffect.mute = false;
+        }
+            
+        else 
+        {
+            InGameSetting.SoundEffect = false;
+            MenuSoundEffect.mute = true;
+            
+        }
+        
     }
 
     public void ClickExitButton() 

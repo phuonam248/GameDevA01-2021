@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
     public void SoundEffectToggleOn() 
     {
         InGameSetting.SoundEffect = SoundEffectToggle.GetComponent<Toggle>().isOn;
-        if (BgMusicToggle.GetComponent<Toggle>().isOn) 
+        if (SoundEffectToggle.GetComponent<Toggle>().isOn) 
         {
             playerShip.GetComponent<AudioSource>().mute = false;
             explosion.GetComponent<AudioSource>().mute = false;

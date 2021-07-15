@@ -19,7 +19,8 @@ public class BossFight : MonoBehaviour
     public GameObject SoundEffectToggle;
     public GameObject explosion;
     public GameObject Victory;
-    public GameObject BackgroundMusic;
+    public AudioSource BackgroundMusic;
+    public AudioSource MenuSoundEffect;
 
     public Text ScoreText;
 
@@ -42,10 +43,9 @@ public class BossFight : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ApplyInGameSetting();
         BigVirus.GetComponent<Transform>().position = new Vector2(0f, 18.1f);
         Phase = BossFightPhase.WaitingToStart;
-        
-        
     }
 
     // Update is called once per frame
@@ -208,6 +208,14 @@ public class BossFight : MonoBehaviour
         }
     }
 
+    void ApplyInGameSetting() {
+        BgMusicToggle.GetComponent<Toggle>().isOn = InGameSetting.BackgroundMusic;
+        SoundEffectToggle.GetComponent<Toggle>().isOn = InGameSetting.SoundEffect;
+
+        //MenuSoundEffect.mute = InGameSetting.SoundEffect;
+        //BackgroundMusic.mute = !InGameSetting.BackgroundMusic;;
+    }
+
     public void ClickExitToMenuButton() {
         SceneManager.LoadScene("Menu");
         Time.timeScale = 1;
@@ -216,27 +224,29 @@ public class BossFight : MonoBehaviour
     public void BgMusicToggleOn() 
     {
         InGameSetting.BackgroundMusic = BgMusicToggle.GetComponent<Toggle>().isOn;
-        if (BgMusicToggle.GetComponent<Toggle>().isOn) 
-        {
-           BackgroundMusic.GetComponent<AudioSource>().UnPause();
-        }
+        BackgroundMusic.mute = !InGameSetting.BackgroundMusic;;
+        // if (BgMusicToggle.GetComponent<Toggle>().isOn) 
+        // {
+        //    BackgroundMusic.UnPause();
+        // }
             
-        else 
-        {
-            BackgroundMusic.GetComponent<AudioSource>().Pause();
-        }
+        // else 
+        // {
+        //     BackgroundMusic.Pause();
+        // }
             
     }
 
     public void SoundEffectToggleOn() 
     {
         InGameSetting.SoundEffect = SoundEffectToggle.GetComponent<Toggle>().isOn;
-        if (BgMusicToggle.GetComponent<Toggle>().isOn) 
+        if (SoundEffectToggle.GetComponent<Toggle>().isOn) 
         {
             playerShip.GetComponent<AudioSource>().mute = false;
             explosion.GetComponent<AudioSource>().mute = false;
             gameOver.GetComponent<AudioSource>().mute = false;
             Victory.GetComponent<AudioSource>().mute = false;
+            MenuSoundEffect.mute = false;
         }
         else 
         {
@@ -244,7 +254,7 @@ public class BossFight : MonoBehaviour
             explosion.GetComponent<AudioSource>().mute = true;
             gameOver.GetComponent<AudioSource>().mute = true;
             Victory.GetComponent<AudioSource>().mute = true;
-
+            MenuSoundEffect.mute = true;
         }
             
     }

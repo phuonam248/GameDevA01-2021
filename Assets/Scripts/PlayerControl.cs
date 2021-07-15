@@ -135,7 +135,7 @@ public class PlayerControl : MonoBehaviour
             Image newHeart = (Image)Instantiate(heart);
             newHeart.transform.SetParent(canvas, false);
             Vector2 postion = newHeart.transform.position;
-            postion.x += (80*i); // 3 hearts cannot be displayed in the same position, right?
+            postion.x += (40*i); // 3 hearts cannot be displayed in the same position, right?
             newHeart.transform.position = postion; // update heart's position
             heartList.Add(newHeart);
         }
