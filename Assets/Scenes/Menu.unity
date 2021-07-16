@@ -2622,7 +2622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114222838503817294, guid: ddd2c4bc8ec2c114f8c9d69e25a0a0db, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114222838503817294, guid: ddd2c4bc8ec2c114f8c9d69e25a0a0db, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -2638,7 +2638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114222838503817294, guid: ddd2c4bc8ec2c114f8c9d69e25a0a0db, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ClickCampaignTwoButton
+      value: ClickCampaignOneButton
       objectReference: {fileID: 0}
     - target: {fileID: 114222838503817294, guid: ddd2c4bc8ec2c114f8c9d69e25a0a0db, type: 3}
       propertyPath: clickEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

@@ -60,6 +60,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("CampaignTwo");
     }
 
+    public void ClickCampaignOneButton() {
+        InGameSetting.GameMode = 1;
+        SceneManager.LoadScene("Campaign1");
+    }
+
 
     public void ClickBackButton()
     {
