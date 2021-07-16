@@ -14,7 +14,8 @@ public class GameManager : MonoBehaviour
     public GameObject exitToMenuButton;
     public GameObject BgMusicToggle;
     public GameObject SoundEffectToggle;
-    public GameObject BackgroundMusic;
+    public AudioSource BackgroundMusic;
+    public AudioSource MenuSoundEffect;
     public GameObject explosion;
     public Text InstructionText;
     public Text ScoreText;
@@ -67,6 +68,8 @@ public class GameManager : MonoBehaviour
                 playerShip.GetComponent<Transform>().position = new Vector2(0,-3);
                 playerShip.GetComponent<Renderer>().material.color = Color.white;
 
+                BackgroundMusic.Play();
+
                 break;
             case GameManagerState.Gameplay:
                 
@@ -93,6 +96,8 @@ public class GameManager : MonoBehaviour
                 gameOver.SetActive(true);
                 tryAgainButton.SetActive(true);
                 exitToMenuButton.SetActive(true);
+
+                BackgroundMusic.Stop();
                 // Set game manager state to Opening after 8 seconds
                 //Invoke("ChangeToOpening", 8f);
                 break;
@@ -149,16 +154,9 @@ public class GameManager : MonoBehaviour
     public void BgMusicToggleOn() 
     {
         InGameSetting.BackgroundMusic = BgMusicToggle.GetComponent<Toggle>().isOn;
-        if (BgMusicToggle.GetComponent<Toggle>().isOn) 
-        {
-            BackgroundMusic.GetComponent<AudioSource>().UnPause();
-        }
-            
-        else 
-        {
-            BackgroundMusic.GetComponent<AudioSource>().Pause();
-        }
-            
+       
+        BackgroundMusic.mute = !InGameSetting.BackgroundMusic;
+        
     }
 
     public void SoundEffectToggleOn() 
@@ -169,12 +167,14 @@ public class GameManager : MonoBehaviour
             playerShip.GetComponent<AudioSource>().mute = false;
             explosion.GetComponent<AudioSource>().mute = false;
             gameOver.GetComponent<AudioSource>().mute = false;
+            MenuSoundEffect.mute = false;
         }
         else 
         {
             playerShip.GetComponent<AudioSource>().mute = true;
             explosion.GetComponent<AudioSource>().mute = true;
             gameOver.GetComponent<AudioSource>().mute = true;
+            MenuSoundEffect.mute = true;
         }
             
     }

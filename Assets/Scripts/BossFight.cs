@@ -77,6 +77,8 @@ public class BossFight : MonoBehaviour
                 playerShip.GetComponent<Transform>().position = new Vector2(0,-3);
                 playerShip.GetComponent<Renderer>().material.color = Color.white;
 
+                BackgroundMusic.Play();
+
                 break;
             case BossFightPhase.Phase_1:
                 
@@ -91,7 +93,7 @@ public class BossFight : MonoBehaviour
                 HealthBar.SetActive(true);
                 // set player ship active and init player lives
                 playerShip.GetComponent<PlayerControl>().Init();
-                
+
                 break;
 
             case BossFightPhase.Phase_2:
@@ -111,7 +113,7 @@ public class BossFight : MonoBehaviour
                 tryAgainButton.SetActive(true);
                 exitToMenuButton.SetActive(true);
                 Time.timeScale = 0;
-               
+                BackgroundMusic.Stop();
                 break;
 
             case BossFightPhase.Victory:
@@ -120,6 +122,7 @@ public class BossFight : MonoBehaviour
                 Victory.SetActive(true);
                 exitToMenuButton.gameObject.SetActive(true);
                 playerShip.SetActive(false);
+                BackgroundMusic.Stop();
                 break;
         }
     }

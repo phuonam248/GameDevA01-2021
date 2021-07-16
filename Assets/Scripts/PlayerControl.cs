@@ -115,11 +115,11 @@ public class PlayerControl : MonoBehaviour
                     // hide player's ship when dead
                     gameObject.SetActive(false);
                 }
-            }
 
-            gameObject.GetComponent<Renderer>().material.color = Color.red;
-            yield return new WaitForSeconds(.2f);
-            gameObject.GetComponent<Renderer>().material.color = Color.white;
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                yield return new WaitForSeconds(.2f);
+                gameObject.GetComponent<Renderer>().material.color = Color.white;
+            }
             
         }
     }
