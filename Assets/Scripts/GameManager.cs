@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,9 +9,12 @@ public class GameManager : MonoBehaviour
     public GameObject playerShip;
     public GameObject playButton;
     public GameObject enemySpawner;
+    public GameObject campaignControl;
+    public GameObject orbSpawner;
     public GameObject gameOver;
     public Text LivesText;
 
+    private OrbSpawner[] orbSpawners;
     public enum GameManagerState {
         Opening,
         Gameplay,
@@ -57,21 +61,42 @@ public class GameManager : MonoBehaviour
                 playerShip.GetComponent<PlayerControl>().Init();
 
                 // Start Enemy spawner
-                enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
+                // enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
+                campaignControl.GetComponent<CampaignControl>().StartCampaign1();
 
-
+                // Start orbSpawner
+                orbSpawners = orbSpawner.GetComponents<OrbSpawner>();
+                StartOrbSpawners(orbSpawners);
                 break;
             case GameManagerState.Gameover:
                 //play game over sound
                 gameObject.GetComponent<AudioSource>().Play();
 
                 // Stop spawner
-                enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
+                // enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
+                // Stop orbsSpawner
+                EndOrbSpawners(orbSpawners);
                 // Display Game Over UI
                 gameOver.SetActive(true);
                 // Set game manager state to Opening after 8 seconds
                 Invoke("ChangeToOpening", 8f);
                 break;
+        }
+    }
+
+    private void EndOrbSpawners(OrbSpawner[] orbSpawners)
+    {
+        foreach(OrbSpawner os in orbSpawners)
+        {
+            os.UnscheduleOrbSpawner();
+        }
+    }
+
+    private void StartOrbSpawners(OrbSpawner[] orbSpawners)
+    {
+        foreach (OrbSpawner os in orbSpawners)
+        {
+            os.ScheduleOrbSpawner();
         }
     }
 

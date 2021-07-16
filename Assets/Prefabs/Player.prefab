@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5368006084068540187}
   - component: {fileID: 5368006084068540186}
-  - component: {fileID: 5368006084068540180}
   - component: {fileID: 5368006084068540182}
   - component: {fileID: 1788113225}
+  - component: {fileID: 118523104504593862}
+  - component: {fileID: 8727879431575808228}
+  - component: {fileID: 7470934368198555817}
   m_Layer: 0
   m_Name: Player
   m_TagString: PlayerShipTag
@@ -28,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5368006084068540184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.998, y: 25.002, z: -1}
+  m_LocalPosition: {x: 23.849, y: 24.853, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 2}
   m_Children:
   - {fileID: 5368006084947317715}
@@ -86,26 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5368006084068540180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5368006084068540184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d54d8bf63833ffe4991b53f7dbe70062, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  playerBullet: {fileID: 8623541950361429857, guid: 4459fde8d69fc864697f17296ac40559, type: 3}
-  bulletPosition: {fileID: 5368006084947317714}
-  explosion: {fileID: 3468571393487934613, guid: 6a081579661c42549811ac1bf3f4cc50, type: 3}
-  speed: 5
-  LivesUIText: {fileID: 0}
-  mousePosition: {x: 0, y: 0}
-  rb: {fileID: 5368006084068540182}
 --- !u!50 &5368006084068540182
 Rigidbody2D:
   serializedVersion: 4
@@ -137,12 +119,63 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.11, y: 0.0001}
   m_Direction: 0
+--- !u!114 &118523104504593862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368006084068540184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54d8bf63833ffe4991b53f7dbe70062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  playerBullet: {fileID: 8623541950361429857, guid: 4459fde8d69fc864697f17296ac40559, type: 3}
+  bulletPosition: {fileID: 5368006084947317714}
+  explosion: {fileID: 3468571393487934613, guid: 6a081579661c42549811ac1bf3f4cc50, type: 3}
+  playerBulletName: 
+  lvlUpWeapon: {fileID: 4186635019147881069, guid: e6d97fc94765f6544a37538c561f0b7b, type: 3}
+  baseSpeed: 4
+  LivesUIText: {fileID: 0}
+  mousePosition: {x: 0, y: 0}
+  rb: {fileID: 0}
+--- !u!114 &8727879431575808228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368006084068540184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27017f992fbf2cd42921c23fb3816ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 5368006084947317715}
+  bulletForce: 15
+  fireTimer: 0
+--- !u!114 &7470934368198555817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5368006084068540184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3191666bd0dffc24b81e177b991da63c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: {fileID: 0}
+  shieldTime: 0
 --- !u!1 &5368006084947317714
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,11 @@ TagManager:
   - EnemyShipTag
   - PlayerBulletTag
   - PlayerShipTag
+  - SpeedTag
+  - ShieldTag
+  - HealthTag
+  - LevelUpWeaponTag
+  - PlayerShield
   layers:
   - Default
   - TransparentFX
