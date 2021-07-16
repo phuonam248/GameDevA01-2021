@@ -31,8 +31,6 @@ public class PlayerControl : MonoBehaviour
 
     List<Image> heartList = new List<Image>();
 
-    public float speed;
-
     const int maxLives = 5;
     int startLives = 3;
     int lives;
@@ -57,7 +55,6 @@ public class PlayerControl : MonoBehaviour
         lives = startLives;
         // update player's ship's health (heart)
         RenderHeart();
-        transform.position = new Vector2(0, 0);
         InitSpeedBoost();
         shield = gameObject.GetComponent<PlayerShield>();
         shield.ActivateShield = true;
@@ -73,7 +70,7 @@ public class PlayerControl : MonoBehaviour
     void Start()
     {
         gameMode = InGameSetting.GameMode;
-       
+        // Init();
     }
 
     // Update is called once per frame
@@ -139,9 +136,10 @@ public class PlayerControl : MonoBehaviour
     }
 
     IEnumerator OnTriggerEnter2D(Collider2D col) {
-        if (!shield.ActivateShield && ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag") || 
-            (col.tag == "AsteroidTag")  || (col.tag == "BossTag")        ||
-            (col.tag == "YellowBulletTag"))) 
+
+        if (col.tag != "PlayerBulletTag" && !shield.ActivateShield && 
+            ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag") || 
+            (col.tag == "AsteroidTag")  || (col.tag == "BossTag")  || (col.tag == "YellowBulletTag"))) 
         {
             if (lives > 0)
             {
@@ -185,7 +183,7 @@ public class PlayerControl : MonoBehaviour
         else if (col.tag == "HealthTag")
         {
             lives++;
-            LivesUIText.text = "Lives: " + lives.ToString();
+            // not implement
         }
         else if (col.tag == "SpeedTag")
         {
@@ -205,6 +203,7 @@ public class PlayerControl : MonoBehaviour
             
         }
     }
+
 
 
     private void LevelUpBullet(GameObject go)
