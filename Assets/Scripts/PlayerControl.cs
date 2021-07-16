@@ -25,12 +25,19 @@ public class PlayerControl : MonoBehaviour
     private bool isSpeedBoosting; // true if player is in speedboostingTime
     private float currentSpeedBoostTime;
 
+    public Transform canvas;
+    public Image heart;
+    
 
-    // Reference to Lives UI text
-    public Text LivesUIText;
+    List<Image> heartList = new List<Image>();
 
-    const int maxLives = 3;
+    public float speed;
+
+    const int maxLives = 5;
+    int startLives = 3;
     int lives;
+    
+    int gameMode;
 
     // Rotation
     public Vector2 mousePosition;
@@ -45,19 +52,15 @@ public class PlayerControl : MonoBehaviour
 
     public void Init()
     {
-        lives = maxLives;
-
-        // update lives UI text
-        LivesUIText.text = "Lives: " + lives.ToString();
-
         // set player ship to the center of the screen
+        
+        lives = startLives;
+        // update player's ship's health (heart)
+        RenderHeart();
         transform.position = new Vector2(0, 0);
         InitSpeedBoost();
         shield = gameObject.GetComponent<PlayerShield>();
         shield.ActivateShield = true;
-
-        // set player game object to active
-        gameObject.SetActive(true);
     }
 
     private void InitSpeedBoost()
@@ -69,12 +72,14 @@ public class PlayerControl : MonoBehaviour
 
     void Start()
     {
-
+        gameMode = InGameSetting.GameMode;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+
 
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         SetRotation();
@@ -133,24 +138,36 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    void OnTriggerEnter2D(Collider2D col)
-    {
-
-        if (!shield.ActivateShield && (col.tag == "EnemyShipTag" || col.tag == "EnemyBulletTag" || col.tag == "AsteroidTag"))
+    IEnumerator OnTriggerEnter2D(Collider2D col) {
+        if (!shield.ActivateShield && ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag") || 
+            (col.tag == "AsteroidTag")  || (col.tag == "BossTag")        ||
+            (col.tag == "YellowBulletTag"))) 
         {
-            PlayExplosion();
-
-            lives--;
-            LivesUIText.text = "Lives: " + lives.ToString();
-
-            if (lives == 0)
+            if (lives > 0)
             {
-                // update game manager state to game over
-                gameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.Gameover);
-                // hide player's ship when dead
-                gameObject.SetActive(false);
+                lives--; 
+                Destroy(heartList[lives].gameObject);
+
+                if (lives == 0) {
+                    PlayExplosion();
+                    // update game manager state to game over
+                    if (gameMode == 0) {
+                        gameManager.GetComponent<GameManager>().SetGameManagerState(GameManager.GameManagerState.Gameover);
+                    }
+                    else if (gameMode == 2) {
+                        gameManager.GetComponent<BossFight>().ChangeToGameover();
+                    }
+                    
+                    
+                    // hide player's ship when dead
+                    gameObject.SetActive(false);
+                }
+
+                gameObject.GetComponent<Renderer>().material.color = Color.red;
+                yield return new WaitForSeconds(.2f);
+                gameObject.GetComponent<Renderer>().material.color = Color.white;
             }
-            //Destroy(gameObject);
+            
         }
         else if (col.tag == "LevelUpWeaponTag")
         {
@@ -226,4 +243,17 @@ public class PlayerControl : MonoBehaviour
     }
 
 
+    void RenderHeart() {
+        heartList = new List<Image>();
+        for (int i = 0; i < lives; i++) {
+            Image newHeart = (Image)Instantiate(heart);
+            newHeart.transform.SetParent(canvas, false);
+            Vector2 postion = newHeart.transform.position;
+            postion.x += (40*i); // 3 hearts cannot be displayed in the same position, right?
+            newHeart.transform.position = postion; // update heart's position
+            heartList.Add(newHeart);
+        }
+    }
+
+  
 }
