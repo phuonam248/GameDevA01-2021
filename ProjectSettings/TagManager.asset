@@ -20,6 +20,7 @@ TagManager:
   - YellowBulletTag
   - Campaign1ControlTag
   - Campaign1ManagerTag
+  - CoinTag
   layers:
   - Default
   - TransparentFX

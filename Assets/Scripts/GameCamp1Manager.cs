@@ -88,7 +88,7 @@ public class GameCamp1Manager : MonoBehaviour
                 break;
             case GameManagerState.Gameplay:
 
-                ScoreText.GetComponent<GameScore>().Score = 0;
+                ScoreText.text = GameStateManager.Instance.Coins.ToString();
 
                 InstructionText.gameObject.SetActive(false);
 

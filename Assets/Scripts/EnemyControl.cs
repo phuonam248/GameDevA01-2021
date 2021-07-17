@@ -9,11 +9,17 @@ public class EnemyControl : MonoBehaviour
     GameObject scoreText;
     public float speed;
     int health;
+    public float dropRateCoin = 0.3f;
+    List<GameObject> objects = new List<GameObject>();
+    List<float> dropRate = new List<float>();
+    public GameObject CoinItem;
     // Start is called before the first frame update
     void Start()
     {
         health = 2;
         scoreText = GameObject.FindGameObjectWithTag("ScoreTag");
+        objects.Add(CoinItem);
+        dropRate.Add(dropRateCoin);
     }
 
     // Update is called once per frame
@@ -34,8 +40,11 @@ public class EnemyControl : MonoBehaviour
             health--;
            
             if (health == 0) {
-                scoreText.GetComponent<GameScore>().Score += 200;
+                // scoreText.GetComponent<GameScore>().Score += 200;
                 PlayExplosion();
+                int index = Random.Range(0, objects.Count);
+                if (Random.Range(0f, 1f) >= dropRate[index])
+                    Instantiate(objects[index], transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
 

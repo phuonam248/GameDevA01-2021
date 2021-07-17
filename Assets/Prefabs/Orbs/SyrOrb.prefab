@@ -4771,7 +4771,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 125a7eeee0b3c37478c04a4ce68140cc, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9588,7 +9587,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 84ab2522697a7154eb1db05536098987, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9663,7 +9661,7 @@ Transform:
   m_GameObject: {fileID: 1999776475789946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 4848985733865200}
   - {fileID: 4800507916339092}
@@ -14409,7 +14407,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: b0f33a9c394b3064e92fe3e369bf5c37, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14492,3 +14489,4 @@ MonoBehaviour:
   - {fileID: 8166812940514765263, guid: e3ab5f3629a31d341af871551c6bcffa, type: 3}
   bulletName: Syringe
   speed: 1.5
+  orbType: 0

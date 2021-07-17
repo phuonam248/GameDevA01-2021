@@ -93,7 +93,7 @@ public class BossFight : MonoBehaviour
                 HealthBar.SetActive(true);
                 // set player ship active and init player lives
                 playerShip.GetComponent<PlayerControl>().Init();
-
+                //playerShip.GetComponent<PlayerShooting>().SetFireEnable(true);
                 break;
 
             case BossFightPhase.Phase_2:

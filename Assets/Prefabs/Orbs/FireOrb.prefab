@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3547545355316307746}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.977797, y: -1.8918327, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 45403104357377388}
   - {fileID: 1588096796760114806}
@@ -4857,6 +4857,7 @@ MonoBehaviour:
   - {fileID: 513126648354870220, guid: 2ae25b9a21842c247bcf6e5cdfa1e95c, type: 3}
   bulletName: Fire
   speed: 1.5
+  orbType: 0
 --- !u!1 &4100426331022912664
 GameObject:
   m_ObjectHideFlags: 0

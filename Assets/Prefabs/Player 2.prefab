@@ -147,6 +147,7 @@ MonoBehaviour:
   baseSpeed: 4
   canvas: {fileID: 0}
   heart: {fileID: 0}
+  CoinText: {fileID: 0}
   mousePosition: {x: 0, y: 0}
   rb: {fileID: 5368006084068540182}
 --- !u!114 &8727879431575808228
@@ -165,7 +166,14 @@ MonoBehaviour:
   bulletForce: 15
   fireTimer: 0
   isPause: 0
-  skins: []
+  isEnable: 0
+  skins:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &7470934368198555817
 MonoBehaviour:
   m_ObjectHideFlags: 0

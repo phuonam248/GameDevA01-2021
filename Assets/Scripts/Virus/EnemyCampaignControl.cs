@@ -1,7 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 public class EnemyCampaignControl : MonoBehaviour
 {
@@ -26,11 +26,17 @@ public class EnemyCampaignControl : MonoBehaviour
     public GameObject explosion;
     public float speed;
     public EnemyType enemyType;
+    public float dropRateCoin = 0.3f;
+    List<GameObject> objects = new List<GameObject>();
+    List<float> dropRate = new List<float>();
+    public GameObject CoinItem;
     // Start is called before the first frame update
     void Start()
     {
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0,0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1,1));
+        objects.Add(CoinItem);
+        dropRate.Add(dropRateCoin);
     }
 
     // Update is called once per frame
@@ -65,10 +71,9 @@ public class EnemyCampaignControl : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col) {
         if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag")) {
             PlayExplosion();
-            PlayExplosion();
-                if (enemyMode == EnemyMode.Campaign1){
-                    NoticeToCampaign1Controller();
-                }
+            int index = Random.Range(0, objects.Count);
+            if (Random.Range(0f, 1f) >= dropRate[index])
+                Instantiate(objects[index], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

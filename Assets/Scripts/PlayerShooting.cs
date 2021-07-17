@@ -27,7 +27,6 @@ public class PlayerShooting : MonoBehaviour
         ChangePlayerSkin();
     }
     void ChangePlayerSkin() {
-        return;
         int index = GameStateManager.Instance.GetSelectedSkinIndex();
         Debug.Log(index);
         skins[index].SetActive(true);
@@ -60,7 +59,7 @@ public class PlayerShooting : MonoBehaviour
 
                 canFire = false;
                 fireTimer = 0f;
-                // gameObject.GetComponent<AudioSource>().Play();
+                gameObject.GetComponent<AudioSource>().Play();
 
                 bulletPrefab = gameObject.GetComponent<PlayerControl>().playerBullet;
                 GameObject bullets = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);

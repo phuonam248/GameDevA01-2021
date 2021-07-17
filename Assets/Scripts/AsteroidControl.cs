@@ -7,10 +7,15 @@ public class AsteroidControl : MonoBehaviour
     public GameObject explosion;
     public float speed;
     GameObject scoreText;
-
+    public float dropRateCoin = 0.2f;
+    List<GameObject> objects = new List<GameObject>();
+    List<float> dropRate = new List<float>();
+    public GameObject CoinItem;
     // Start is called before the first frame update
     void Start()
     {
+        objects.Add(CoinItem);
+        dropRate.Add(dropRateCoin);
         scoreText = GameObject.FindGameObjectWithTag("ScoreTag");
     }
 
@@ -28,8 +33,11 @@ public class AsteroidControl : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col) {
         if ((col.tag == "PlayerShipTag") || (col.tag == "PlayerBulletTag")) {
-            scoreText.GetComponent<GameScore>().Score += 100;
+            // scoreText.GetComponent<GameScore>().Score += 100;
             PlayExplosion();
+            int index = Random.Range(0, objects.Count);
+            if (Random.Range(0f, 1f) >= dropRate[index])
+                Instantiate(objects[index], transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -27,7 +27,7 @@ public class PlayerControl : MonoBehaviour
 
     public Transform canvas;
     public Image heart;
-    
+    public Text CoinText;
 
     List<Image> heartList = new List<Image>();
 
@@ -144,7 +144,7 @@ public class PlayerControl : MonoBehaviour
     }
 
     IEnumerator OnTriggerEnter2D(Collider2D col) {
-
+        Debug.Log(col.tag);
         if (col.tag != "PlayerBulletTag" && !shield.ActivateShield && 
             ((col.tag == "EnemyShipTag") || (col.tag == "EnemyBulletTag") || 
             (col.tag == "AsteroidTag")  || (col.tag == "BossTag")  || (col.tag == "YellowBulletTag"))) 
@@ -208,8 +208,12 @@ public class PlayerControl : MonoBehaviour
         {
             shield.ActivateShield = true;
         }
-        else if (col.tag == "HealTag"){
+        // else if (col.tag == "HealTag"){
             
+        // }
+        else if (col.tag == "CoinTag"){
+            GameStateManager.Instance.Coins += 2;
+            CoinText.text = GameStateManager.Instance.Coins.ToString();
         }
     }
 
