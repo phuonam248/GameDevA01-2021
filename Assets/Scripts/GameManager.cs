@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour
 
                 // Start Enemy spawner
                 enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
-
+                orbSpawners = orbSpawner.GetComponents<OrbSpawner>();
                 StartOrbSpawners(orbSpawners);
 
 

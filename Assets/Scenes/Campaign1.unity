@@ -1712,7 +1712,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerShip: {fileID: 1724369395}
   enemySpawner: {fileID: 830840825}
-  campaignControl: {fileID: 0}
   orbSpawner: {fileID: 380130888}
   gameOver: {fileID: 1495902715}
   tryAgainButton: {fileID: 1429874765}
@@ -1722,6 +1721,7 @@ MonoBehaviour:
   BackgroundMusic: {fileID: 1618447454}
   MenuSoundEffect: {fileID: 1536824483}
   explosion: {fileID: 3468571393487934613, guid: 6a081579661c42549811ac1bf3f4cc50, type: 3}
+  Victory: {fileID: 1017016253}
   InstructionText: {fileID: 1774511687}
   ScoreText: {fileID: 572424503}
 --- !u!82 &888246742

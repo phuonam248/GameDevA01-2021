@@ -39,7 +39,6 @@ public class CampaignControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdatePhase();
     }
 
     private void UpdateSpawnOrb()
@@ -96,7 +95,8 @@ public class CampaignControl : MonoBehaviour
         switch (phase)
         {
             case Phase.Phase_1:
-                if (IsPhaseCompleted()) phase = Phase.Phase_2;
+                // if (IsPhaseCompleted()) phase = Phase.Phase_2;
+                if (IsPhaseCompleted()) phase = Phase.Victory;
                 break;
             case Phase.Phase_2:
                 if (IsPhaseCompleted()) phase = Phase.Phase_3;
@@ -104,6 +104,11 @@ public class CampaignControl : MonoBehaviour
             case Phase.Phase_3:
                 if (IsPhaseCompleted()) phase = Phase.Victory;
                 break;
+        }
+        if (phase == Phase.Victory){
+            gameObject
+            .GetComponent<GameCamp1Manager>()
+            .ChangeToVictory();
         }
     }
 
@@ -143,8 +148,8 @@ public class CampaignControl : MonoBehaviour
     public void NoticeDestroyedEnemy()
     {
         numOfKilledEnemies += 1;
-        Debug.Log(numOfKilledEnemies);
         UpdateSpawnOrb();
+        UpdatePhase();
     }
 
     private IEnumerator SpawnBlueEnemies()

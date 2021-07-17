@@ -19,6 +19,7 @@ public class GameCamp1Manager : MonoBehaviour
     public AudioSource BackgroundMusic;
     public AudioSource MenuSoundEffect;
     public GameObject explosion;
+    public GameObject Victory;
     public Text InstructionText;
     public Text ScoreText;
 
@@ -115,6 +116,13 @@ public class GameCamp1Manager : MonoBehaviour
                 // Set game manager state to Opening after 8 seconds
                 //Invoke("ChangeToOpening", 8f);
                 break;
+            case GameManagerState.Victory:
+                ScoreText.GetComponent<GameScore>().Score += 10000;
+                Victory.SetActive(true);
+                exitToMenuButton.gameObject.SetActive(true);
+                playerShip.SetActive(false);
+                BackgroundMusic.Stop();
+                break;
         }
     }
 
@@ -133,6 +141,10 @@ public class GameCamp1Manager : MonoBehaviour
     void ChangeToGameplay()
     {
         SetGameManagerState(GameManagerState.Gameplay);
+    }
+
+    public void ChangeToVictory(){
+        SetGameManagerState(GameManagerState.Victory);
     }
 
     void PauseGame()
