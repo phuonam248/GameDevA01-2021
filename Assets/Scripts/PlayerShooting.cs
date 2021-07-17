@@ -17,6 +17,7 @@ public class PlayerShooting : MonoBehaviour
     private float delayFireTimer = 0.35f;
     public float fireTimer;
     public bool isPause;
+    public bool isEnable;
     [SerializeField] GameObject[] skins;
     // Start is called before the first frame update
     void Start()
@@ -37,8 +38,13 @@ public class PlayerShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Fire();
+        if (isEnable && isPause)
+            Fire();
     }
+    public void SetFireEnable(bool state){
+        isEnable = state;
+    }
+
 
     private void Fire()
     {
@@ -59,7 +65,6 @@ public class PlayerShooting : MonoBehaviour
                 bulletPrefab = gameObject.GetComponent<PlayerControl>().playerBullet;
                 GameObject bullets = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 int n = bullets.transform.childCount;
-                Debug.Log(n);
 
                 // int countUp = 0;
                 // int countDiagonal = 0;

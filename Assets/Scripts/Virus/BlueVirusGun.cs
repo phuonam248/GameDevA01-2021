@@ -11,7 +11,7 @@ public class BlueVirusGun : MonoBehaviour
     private Vector2 direction = new Vector2(0f, -1f);
     void Start()
     {
-        Fire();
+
     }
 
     // Update is called once per frame
@@ -20,18 +20,18 @@ public class BlueVirusGun : MonoBehaviour
 
     }
 
-    void Fire()
+    public void Fire()
     {
-        float ranTime = Random.Range(2f, 3f);
+        float ranTime = Random.Range(2f, 5f);
         Invoke("FireByDirection", ranTime);
     }
 
-    void FireByDirection()
+    private void FireByDirection()
     {
         GameObject bullet = (GameObject)Instantiate(enemyBullet);
         bullet.transform.position = transform.GetChild(0).transform.position;
         bullet.GetComponent<EnemyBullet>().setDirection(direction);
-        float ranTime = Random.Range(2f, 3f);
+        float ranTime = Random.Range(2f, 5f);
         Invoke("FireByDirection", ranTime);
     }
 

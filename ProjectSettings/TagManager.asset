@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - ScoreTag
+  - EnemyShipTag
+  - HealthTag
+  - SpeedTag
+  - EnemyBulletTag
+  - EnemyGun
+  - PlayerShipTag
+  - PlayerShield
+  - LevelUpWeaponTag
+  - PlayerBulletTag
+  - ShieldTag
+  - AsteroidTag
+  - BossTag
+  - YellowBulletTag
+  - Campaign1ControlTag
+  - Campaign1ManagerTag
   layers:
   - Default
   - TransparentFX

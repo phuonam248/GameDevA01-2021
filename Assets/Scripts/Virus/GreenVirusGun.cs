@@ -11,7 +11,7 @@ public class GreenVirusGun : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Fire();
+
     }
 
 
@@ -22,7 +22,7 @@ public class GreenVirusGun : MonoBehaviour
 
     }
 
-    void Fire()
+    public void Fire()
     {
         float ranTime = Random.Range(3f, 4f);
         Invoke("FireByDirection", ranTime);

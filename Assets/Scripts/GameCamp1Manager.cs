@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
-public class GameManager : MonoBehaviour
+public class GameCamp1Manager : MonoBehaviour
 {
     public GameObject playerShip;
     public GameObject enemySpawner;
@@ -21,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Text InstructionText;
     public Text ScoreText;
 
+    CampaignControl campaignController;
 
     bool GameIsPaused;
 
@@ -30,22 +32,29 @@ public class GameManager : MonoBehaviour
         Opening,
         Gameplay,
         Gameover,
+        Victory
     }
 
     GameManagerState GMState;
     // Start is called before the first frame update
     void Start()
     {
+        ApplyInGameSetting();
+        GMState = GameManagerState.Opening;
+        campaignController = gameObject.GetComponent<CampaignControl>();
+        Invoke("ChangeToGameplay", 4f);
+    }
+    private void ApplyInGameSetting()
+    {
         BgMusicToggle.GetComponent<Toggle>().isOn = InGameSetting.BackgroundMusic;
         SoundEffectToggle.GetComponent<Toggle>().isOn = InGameSetting.SoundEffect;
-        GMState = GameManagerState.Opening;
-        Invoke("ChangeToGameplay", 4f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GMState == GameManagerState.Gameplay)
+        if (Input.GetKeyDown(KeyCode.Escape) && GMState != GameManagerState.Gameover
+        && GMState != GameManagerState.Victory && GMState == GameManagerState.Gameplay)
         {
             GameIsPaused = !GameIsPaused;
             PauseGame();
@@ -69,6 +78,8 @@ public class GameManager : MonoBehaviour
                 Invoke("ChangeToGameplay", 4f);
 
                 playerShip.SetActive(true);
+                playerShip.GetComponent<PlayerShooting>().SetFireEnable(false);
+
                 playerShip.GetComponent<Transform>().position = new Vector2(0, -3);
                 playerShip.GetComponent<Renderer>().material.color = Color.white;
 
@@ -86,19 +97,15 @@ public class GameManager : MonoBehaviour
                 // set player ship active and init player lives
                 playerShip.GetComponent<PlayerControl>().Init();
 
-                // Start Enemy spawner
-                enemySpawner.GetComponent<EnemySpawner>().ScheduleEnemySpawner();
+                campaignController.StartCampaign1();
 
-                StartOrbSpawners(orbSpawners);
-
-
+                // Start orbSpawner
                 break;
             case GameManagerState.Gameover:
 
 
                 // Stop spawner
-                enemySpawner.GetComponent<EnemySpawner>().UnscheduleEnemySpawner();
-                EndOrbSpawners(orbSpawners);
+                // Stop orbsSpawner
                 // Display Game Over UI
                 gameOver.SetActive(true);
                 tryAgainButton.SetActive(true);
@@ -110,22 +117,6 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    private void EndOrbSpawners(OrbSpawner[] orbSpawners)
-    {
-        foreach (OrbSpawner os in orbSpawners)
-        {
-            os.UnscheduleOrbSpawner();
-        }
-    }
-
-    private void StartOrbSpawners(OrbSpawner[] orbSpawners)
-    {
-        foreach (OrbSpawner os in orbSpawners)
-        {
-            os.ScheduleOrbSpawner();
-        }
-    }
-
 
     public void SetGameManagerState(GameManagerState state)
     {

@@ -9,6 +9,14 @@ public class OrbControl : MonoBehaviour
     public string bulletName;
     public float speed;
     // Start is called before the first frame update
+    public enum OrbType{
+        BlueBullet=0,
+        RedBullet,
+        Shield,
+        Heal,
+        Speed
+    }
+    public OrbType orbType;
     void Start()
     {
 

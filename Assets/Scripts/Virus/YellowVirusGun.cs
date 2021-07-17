@@ -25,7 +25,6 @@ public class YellowVirusGun : MonoBehaviour
     void Start()
     {
         InitDirectVector();
-        Fire();
     }
 
 
@@ -36,7 +35,7 @@ public class YellowVirusGun : MonoBehaviour
 
     }
 
-    void Fire()
+    public void Fire()
     {
         float ranTime = Random.Range(3f, 4f);
         Invoke("FireByDirection", ranTime);

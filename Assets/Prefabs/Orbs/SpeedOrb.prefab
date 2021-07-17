@@ -9668,6 +9668,7 @@ MonoBehaviour:
   bulletPrefabs: []
   bulletName: 
   speed: 1.5
+  orbType: 4
 --- !u!1 &1939419837291940
 GameObject:
   m_ObjectHideFlags: 0

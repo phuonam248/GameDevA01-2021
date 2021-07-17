@@ -7,7 +7,7 @@ using System;
 public class Follower : MonoBehaviour
 {
     public PathCreator pathCreator;
-    private readonly float speed = 5f;
+    private float speed = 5f;
 
     float distanceTraveled;
     private float destination_x;
@@ -38,13 +38,20 @@ public class Follower : MonoBehaviour
 
     private void MoveToDestination(Vector2 nextpointPos)
     {
+        if (reached) return;
         float distance = Mathf.Abs(transform.position.x - destination_x);
         if (!reached && minDistance > distance)
         {
             minDistance = distance;
             transform.position = nextpointPos;
         }
-        else reached = true;
+        else
+        {
+            reached = true;
+            gameObject
+                .GetComponent<EnemyCampaignControl>()
+                .StartFire();
+        };
     }
 
     public void SetDestination(float x)
@@ -56,7 +63,12 @@ public class Follower : MonoBehaviour
     public void SetDestinationByRational()
     {
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
-        
+
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 
 

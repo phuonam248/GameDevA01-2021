@@ -56,8 +56,16 @@ public class PlayerControl : MonoBehaviour
         // update player's ship's health (heart)
         RenderHeart();
         InitSpeedBoost();
+        InitGun();
         shield = gameObject.GetComponent<PlayerShield>();
         shield.ActivateShield = true;
+    }
+
+    private void InitGun()
+    {
+        gameObject
+            .GetComponent<PlayerShooting>()
+            .SetFireEnable(true);
     }
 
     private void InitSpeedBoost()
@@ -184,6 +192,7 @@ public class PlayerControl : MonoBehaviour
         {
             lives++;
             // not implement
+            
         }
         else if (col.tag == "SpeedTag")
         {

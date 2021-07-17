@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4306880461024003377}
   - component: {fileID: 3342955789486614}
   - component: {fileID: -9178425216432108209}
+  - component: {fileID: 8860885797996713465}
+  - component: {fileID: 7531966649929932326}
   m_Layer: 0
   m_Name: OrbSpawner
   m_TagString: Untagged
@@ -75,3 +77,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orb: {fileID: 0}
   maxOrbSpawnerRate: 0
+--- !u!114 &8860885797996713465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841812156083630153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c00a31a8268264f8bf2f71e3bfe533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orb: {fileID: 5728431376988019324, guid: 9c722c74483e51a48a1ea50544da7713, type: 3}
+  maxOrbSpawnerRate: 15
+--- !u!114 &7531966649929932326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6841812156083630153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98c00a31a8268264f8bf2f71e3bfe533, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orb: {fileID: 1921158414525276, guid: 96e67c203eaa84d4ca0401f29e2a1083, type: 3}
+  maxOrbSpawnerRate: 15

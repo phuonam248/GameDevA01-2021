@@ -7,27 +7,30 @@ public class OrbSpawner : MonoBehaviour
     public GameObject orb;
     [SerializeField]
     private float maxOrbSpawnerRate;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void SpawnOrb()
     {
+        SpawnOrbOneTime();
+        ScheduleNextOrbSpawn();
+    }
+
+    public void SpawnOrbOneTime()
+    {
         Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
         Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
-
-        //spawn enemy
         GameObject anOrb = (GameObject)Instantiate(orb);
         anOrb.transform.position = new Vector2(Random.Range(min.x, max.x), max.y);
-        ScheduleNextOrbSpawn();
     }
 
     void ScheduleNextOrbSpawn()

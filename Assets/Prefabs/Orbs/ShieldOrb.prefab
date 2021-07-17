@@ -14483,3 +14483,4 @@ MonoBehaviour:
   bulletPrefabs: []
   bulletName: 
   speed: 1.5
+  orbType: 2
