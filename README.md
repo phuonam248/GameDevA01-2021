@@ -30,3 +30,11 @@ breath!
 ❖ Enjoy the beautiful universe and listen to epic soundtracks.  
 
 # Resource references
+
+This game was made with Unity 2020.3.14f1(LTS).    
+
+1. https://www.freepik.com/premium-vector/space-ship-game-sprites_3959129.htm
+2. https://opengameart.org/content/space-shooter-music
+3. https://pngtree.com/so/virus
+4. https://mixkit.co/free-sound-effects/game/
+5. https://assetstore.unity.com/packages/tools/gui/modern-ui-pack-150824
